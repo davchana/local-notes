@@ -1,0 +1,19 @@
+CACHE MANIFEST
+#<?php
+#header('Content-Type: text/cache-manifest');
+#header("Cache-Control: no-cache, must-revalidate"); // HTTP/1.1
+#?>
+
+CACHE:
+favicon.png
+js.js
+
+NETWORK:
+*
+
+#comment 1 <?php
+#clearstatcache();
+#echo date ("F d Y H:i:s", filemtime("index.htm"));
+#//$text = stat("index.htm");
+#//echo date ("F d Y H:i:s", $text["mtime"]);
+#?>
