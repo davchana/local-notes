@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html manifest="manifest.appcache.htm">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	
+	<meta name="application-name" content="Local Notes - LTN">
+	<meta name="theme-color" content="#000">
+	<meta name="mobile-web-app-capable" content="yes">
+	<meta name="HandheldFriendly" content="true">
+	<meta name="start_url" content="/index.html">
+	<meta name="display" content="portrait">
+	<meta name="orientation" content="fullscreen">
+	
+	<meta name="rating" content="General">
+	<meta name="robots" content="noindex, nofollow">
+	<link rel="icon" href="favicon.png" sizes="16x16" type="image/png">
+	
+	
+	<title>Local Notes</title>
+	<meta type="description" content="">
+	<style type="text/css">
+		body {
+			font-size: 12px;
+			font-family: sans-serif;
+		}
+		#showcase{
+			border: 0px solid grey;
+		}
+		ul, li{
+			margin-top: 0px;
+			margin-bottom: 0px;
+		}
+			ul.todo {
+			list-style-type:square;
+		}
+		input[type="checkbox"]{
+			padding: 0px;
+			vertical-align: middle;
+			bottom: 1px;
+		}
+		
+		input[type="button"]{
+			margin: 0px 5px;
+			padding: 3px 5px;
+		}
+		input:not([type="button"]) {
+			border: none;
+			background-color: #E0E0E0;
+			height: 20px;
+		}
+		input[type="text"], input[type="date"]{
+			width: 220px;
+		}
+		input:focus { 
+			background-color: pink;
+		}
+		
+	</style>
+</head>
+<body>
+<h2>Local Notes</h2>
+<form name=notes id=notes method=post action="" onsubmit="return false;">
+<div id=showcase>
+</div>
+
+
+<input type=date name=date id=date autocomplete=on required><p>
+<input type=text name=todo id=todo value="test01" automplete="on"><p>
+<input type=button name=add value=Add id=addBtn onclick="addData()">
+<input type=button name=del value=Del id=delBtn onclick="delData()">
+<input type=button name=save value=Save id=saveBtn disabled onclick="downloadFile()">
+</form>
+
+<script type="text/javascript" src="js.js"></script>
+</body>
+</html>
