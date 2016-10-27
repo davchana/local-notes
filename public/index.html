@@ -17,7 +17,6 @@
 	<meta name="robots" content="noindex, nofollow">
 	<link rel="icon" href="favicon.png" sizes="16x16" type="image/png">
 	
-	
 	<title>Local Notes</title>
 	<meta type="description" content="">
 	<style type="text/css">
@@ -28,30 +27,26 @@
 		#showcase{
 			border: 0px solid grey;
 		}
-		ul, li{
-			margin-top: 0px;
-			margin-bottom: 0px;
+		ul{
+			padding-left: 20px;
 		}
-			ul.todo {
-			list-style-type:square;
+		li{
+			margin-top: 10px;
 		}
 		input[type="checkbox"]{
 			padding: 0px;
 			vertical-align: middle;
 			bottom: 1px;
 		}
-		
 		input[type="button"]{
 			margin: 0px 5px;
 			padding: 3px 5px;
 		}
-		input:not([type="button"]) {
+		input[type="text"], input[type="date"], textarea {
 			border: none;
 			background-color: #E0E0E0;
-			height: 20px;
-		}
-		input[type="text"], input[type="date"]{
 			width: 220px;
+			padding: 0px;
 		}
 		input:focus { 
 			background-color: pink;
@@ -63,12 +58,12 @@
 <h2>Local Notes</h2>
 <form name=notes id=notes method=post action="" onsubmit="return false;">
 <div id=showcase></div>
-
 <input type=date name=date id=date autocomplete=on required><p>
-<input type=text name=todo id=todo value="test01" automplete="on"><p>
+<textarea name=todo id=todo placeholder="Add an item here" rows="4" autofocus required></textarea><p>
 <input type=button name=add value=Add id=addBtn onclick="addData()">
 <input type=button name=del value=Del id=delBtn onclick="delData()">
-<input type=button name=save value=Save id=saveBtn disabled onclick="downloadFile()">
+<input type=button name=del value=Print id=printBtn onclick="printPage()">
+<input type=button name=save value=Save id=saveBtn onclick="downloadFile()">
 </form>
 
 <script type="text/javascript" src="js.js"></script>
