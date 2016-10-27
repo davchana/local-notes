@@ -125,7 +125,7 @@ for (var i=0, l=del.length; i < l; i++) {
 		}
 	}
 }
-//localStorage.setItem(stamp+"ts", timestamp());
+localStorage.setItem(stamp+"ts", timestamp());
 window.location.reload();	
 }
 
