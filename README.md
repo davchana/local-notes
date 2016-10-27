@@ -6,7 +6,7 @@ A web-app to store & display small notes, using local browser storage.
 
 I used to use yellow post-it notes or scrap-paper-cut-into-quarters to quickly jot down something, & then write it properly on my custom bullet journal.
 
-But those bits of paper ar eprone to get lost/misplaced + I need paper & pen if I am on the move, whereas my phone always stays with me. So, this app replaces those bits of paper.
+But those bits of paper are prone to get lost/misplaced + I need paper & pen if I am on the move, whereas my phone always stays with me. So, this app replaces those bits of paper.
 
 #### Using:
 1. Local Storage
