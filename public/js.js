@@ -27,42 +27,38 @@ for ( var i=0; i<len; i++ ) {
 	//console.log(key);
 	var thiskey = key.search(stamp); //console.log(thiskey); //OK //Process
 	var thists = key.search("ts"); //console.log(thists); //OK //No ts keys should be touched
-	if(thiskey==0){
+	if(thiskey==0){ //if key is of this project & is not timestamp
 		if(thists!=4){
-			//if key is of this project & is not timestamp
-			var todo = localStorage.getItem(key); //console.log(typeof todo);
 			
+			var todo = JSON.parse(localStorage.getItem(key)); //console.log(todo); //string if one, object of multiple
 			key = key.replace(stamp, ""); // console.log(key);
 			
 			var uldate=document.createElement("ul"); uldate.setAttribute("class", "date"); //<ul class="date">
+			var lidate = document.createElement("li");
+			lidate.appendChild(document.createTextNode(key + " " + getdayname(key, 3))); //<li>2016-10-22</li> //3 = Day Name Length
+			uldate.appendChild(lidate);
+			var ultodo=document.createElement("ul");
 			
-				var lidate = document.createElement("li");
-				lidate.appendChild(document.createTextNode(key + " " + getdayname(key, 3))); //<li>2016-10-22</li> //3 = Day Name Length
-				uldate.appendChild(lidate);
-				var ultodo=document.createElement("ul");
-				
-				//find if todo is object/array or string?, if array, use loop
-				var multitodo = todo.search("~");// console.log(multitodo); //-1 if does not exist
-				if(multitodo!=-1){
-					todo = todo.split("~"); //console.log(todo); //OK
-					var lentodo = todo.length; //console.log(len);
-					//litodo = document.createElement("li"); 
-					for ( var j=0; j<lentodo; j++ ) {
-						var litodo = document.createElement("li");
-						litodo.setAttribute("class", "todo"); //<li class="todo">
-						litodo.appendChild(makecheckbox(key,j));
-						litodo.appendChild(document.createTextNode(todo[j])); //<li>ToDo01</li>
-						ultodo.appendChild(litodo);
-					}
-				} else {
+			//find if todo is object/array or string?, if array, use loop
+			if(Array.isArray(todo)!==false){
+				var lentodo = todo.length; //console.log(lentodo);
+				for ( var j=0; j<lentodo; j++ ) {
 					var litodo = document.createElement("li");
 					litodo.setAttribute("class", "todo"); //<li class="todo">
-					litodo.appendChild(makecheckbox(key,0));
-					litodo.appendChild(document.createTextNode(todo)); //<li>ToDo01</li>
+					litodo.appendChild(makecheckbox(key,j));
+					litodo.appendChild(document.createTextNode(todo[j])); //<li>ToDo01</li>
 					ultodo.appendChild(litodo);
 				}
-				uldate.appendChild(ultodo);
-			
+				
+			} else {
+				var litodo = document.createElement("li");
+				litodo.setAttribute("class", "todo"); //<li class="todo">
+				litodo.appendChild(makecheckbox(key,0));
+				litodo.appendChild(document.createTextNode(todo)); //<li>ToDo01</li>
+				ultodo.appendChild(litodo);
+			}
+			uldate.appendChild(ultodo);
+		
 			 //console.log(uldate); //OK //Assumption that LI is just text, what if it is an object?
 			showcase.appendChild(uldate);
 		} //if ends
@@ -73,16 +69,22 @@ for ( var i=0; i<len; i++ ) {
 //##########################################################################################
 //fetch data from form, stringyfy it, add to local storage
 function addData(){
-var date = document.getElementById("date").value; //get date value
-var todo = document.getElementById("todo").value;
+var key = document.getElementById("date").value; //get date value
+var todo = document.getElementById("todo").value; //console.log(todo);
 //check if date already exists in local storage? //NULL if not exists, notNULL is exists
-var dateexists = localStorage.getItem(stamp + date);
-//console.log(dateexists);
- if(dateexists != null){
-	//console.log("1"); //yes, working
-	todo = dateexists + "~" + todo; //console.log(todo); //OK
- }
-localStorage.setItem(stamp + date, todo);
+var data = JSON.parse(localStorage.getItem(stamp+key));
+
+if(data !== null){ //if date does exist
+	if(typeof data === "string"){ //if only on entry in date
+		data = [todo, data];
+	}else if(typeof data === "object"){ //if 1+ entry
+		data.unshift(todo);
+	}
+} else { // if date does not exist
+	data = todo;
+}
+
+localStorage.setItem(stamp+key, JSON.stringify(data));
 localStorage.setItem(stamp+"ts", timestamp());
 window.location.reload();
 }
@@ -115,15 +117,15 @@ for (var i=0, l=del.length; i < l; i++) {
 			}
 			//console.log(newdata);
 			newdata = newdata.slice(0, -1);
-			localStorage.setItem(stamp+key, newdata);
+			//localStorage.setItem(stamp+key, newdata);
 			//console.log(newdata);
 			//console.log(key);
 		} else{//no ~in value
-			delete window.localStorage[stamp + key];
+			//delete window.localStorage[stamp + key];
 		}
 	}
 }
-localStorage.setItem(stamp+"ts", timestamp());
+//localStorage.setItem(stamp+"ts", timestamp());
 window.location.reload();	
 }
 
