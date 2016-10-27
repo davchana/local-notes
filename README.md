@@ -17,6 +17,7 @@ But those bits of paper ar eprone to get lost/misplaced + I need paper & pen if 
 Please try this & report any issues at https://gitlab.com/davchana/local-notes/issues
 
 
+
 #### Is it any good?
 
 [Yes](https://news.ycombinator.com/item?id=3067434)
