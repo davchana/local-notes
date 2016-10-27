@@ -1,0 +1,4 @@
+Enhancements:
+
+DRY li creation by moving the repeated code to a function
+DRY thisKey check (if thisKey is of this Project & is not timestamp) by moving the code to a function
